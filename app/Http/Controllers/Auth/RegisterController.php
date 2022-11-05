@@ -103,7 +103,6 @@ class RegisterController extends Controller
                 'id' => $data['ci'],
             ]);
         }
-        Login $log;
         return $user;
     }
 
