@@ -101,6 +101,7 @@ class RegisterController extends Controller
         if($data['rol'] == 4){
             Chef::create([
                 'id' => $data['ci'],
+                'anios_exp' => 0,
             ]);
         }
         return $user;

@@ -13,10 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <div class="card" style="width: 18rem;">
+                        <img src="../img/Mendozaa.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h1>{{ Auth::user()->user }}</h1>
+                           <h1>{{ Auth::user()->name }} {{ Auth::user()->ap_paterno }} {{ Auth::user()->ap_materno }}</h1>
+                           <p>{{ Auth::user()->email }}</p>
 
-                    {{ Auth::user()->rol }}
-                        <br>
-                    {{$msg}}
+                        </div>
+                      </div>
+
+
+
                 </div>
             </div>
         </div>

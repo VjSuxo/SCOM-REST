@@ -35,4 +35,7 @@ class HomeController extends Controller
     public function adminHome(){
         return view('home',["msg"=>"Soy admin"]);
     }
+    public function chefHome(){
+        return view('home',["msg"=>"Soy admin"]);
+    }
 }

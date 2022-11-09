@@ -54,6 +54,9 @@ class LoginController extends Controller
             else  if(auth()->user()->rol == 1){
                 return redirect()->route('home.editor');
             }
+            else  if(auth()->user()->rol == 4){
+                return redirect()->route('home.chef');
+            }
             else if(auth()->user()->rol == 0){
                 return redirect()->route('home');
             }

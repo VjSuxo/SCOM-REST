@@ -83,7 +83,7 @@ class PostController extends Controller
                         return back();
                     }
                     else{
-                        lert::error('Error', 'Datos no alamcenados con exito ');
+                        Alert::error('Error', 'Datos no alamcenados con exito ');
                         return back();
                     }
             }
@@ -165,18 +165,20 @@ class PostController extends Controller
                         return back();
                     }
                     else{
-                        lert::error('Error', 'Datos no alamcenados con exito ');
+                        Alert::error('Error', 'Datos no alamcenados con exito ');
                         return back();
                     }
             }
             else if($request->categoria == 'comentarios'){
+                    $comen = Comentario::find($request->comentarioP);
+                    $user = User::find($comen->cliente_id);
                     $post = new  Post;
                     $post->url = '';
                     $post->pagina = $request->pagina;
                     $post->categoria = $request->categoria;
-                    $post->titulo = $request->titulo;
-                    $post->titulo2 = $request->titulo2;
-                    $post->contenido = $request->comentarioP;
+                    $post->titulo = $user->name;
+                    $post->titulo2 = $user->ap_paterno;;
+                    $post->contenido = $comen->texto;
                     $post->save();
                     Alert::success('Guardado', 'Datos alamcenados carrucel con exito ');
                     return back();
@@ -190,5 +192,24 @@ class PostController extends Controller
 
     }
 
+    public function editarPost(Post $post)
+    {
+        return view('admin.post.editar-post',['post'=> $post]);
+    }
+
+    public function editarPostC()
+    {
+        $posts = Comentario::get();
+        return view('admin.post.editarC-post',['posts'=> $posts]);
+    }
+
+    public function update(Request $request,Post $post)
+    {
+        $post->titulo = $request->input('titulo');
+        $post->titulo2 = $request->input('titulo2');
+        $post->contenido = $request->input('contenido');
+        $post->save();
+        return view('admin.post.blanco');
+    }
 
 }

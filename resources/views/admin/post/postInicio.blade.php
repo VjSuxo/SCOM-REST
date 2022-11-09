@@ -7,15 +7,23 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-        @vite(['resources/css/estilo_inicio.css'])
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        @vite(['resources/css/estilo_inicio.css','resources/css/estilo_comentario.css','resources/sss/sss.css','resources/css/estilo_tarjetaPlatillos.css','resources/css/estilo_imgDiagonal.css','resources/css/estilo_tarjetasFlip.css','resources/sss/sss.js',])
         <title>Document</title>
     </head>
-    <body>
+    <body >
 
         <section class="dis-sto">
-
+            <script>
+                jQuery(function($){
+                    $('.slider-testimonial').sss({
+                        slideShow : true,
+                        speed : 3500
+                    });
+                });
+            </script>
             <div class="container">
-                <a class="btn btn-primary" type="submit">Button</a>
+                <a class="btn btn-primary" href="" type="submit">Editar</a>
                 <div class="res-info ">
 
                     <div class="carrucel_imagen border border-dark ">
@@ -60,12 +68,13 @@
                     </div>
 
                     <div class="res-des pad-rig border border-dark mt-3">
-                        <a class="btn btn-primary mt-3" type="submit">Button</a>
+
                         @foreach ($posts as $post )
                             @if ($post->pagina == 'inicio')
                                 <div class="global">
                                     <h2 class="h2-sub">
                                         @if ($post->categoria == 'carrucel-texto')
+                                        <a class="btn btn-primary mt-3" href=" {{ route('admin.post.editar-post',$post->id) }} "  type="submit">Button</a>
                                             {{$post->titulo2}}
                                         @endif
                                     </h2>
@@ -98,24 +107,30 @@
 
         <section class="container">
 
-            <div class="card-group border border-dark">
-                @foreach ($posts as $post )
+            <div class="caracteristicasCard">
+                <div class="card-group border border-dark">
+                    @foreach ($posts as $post )
 
-                    @if ($post->pagina == 'inicio' )
-                        @if ($post->categoria == 'caracteristicas' )
-                            <a class="btn btn-primary " type="submit">Button</a>
-                            <div class="card text-bg-dark">
-
-                                    <img src="{{ asset($post->url) }}" class="card-img" alt="...">
-                                    <div class="card-img-overlay">
-                                        <p class="card-text "> {{ $post->contenido }} </p>
+                        @if ($post->pagina == 'inicio' )
+                            @if ($post->categoria == 'caracteristicas' )
+                                <a class="btn btn-primary " href="{{ route('admin.post.editar-post',$post->id) }}" type="submit">Button</a>
+                                <div class="cardCar">
+                                    <div class="face front">
+                                        <img src="{{ asset($post->url) }}" alt="">
+                                        <h3>{{ $post->contenido }}</h3>
                                     </div>
+                                    <div class="face back">
+                                        <h3>{{ $post->contenido }}</h3>
+                                        <p>{{ $post->contenido }}</p>
 
-                            </div>
+                                    </div>
+                                </div>
+
+                            @endif
                         @endif
-                    @endif
-                @endforeach
+                    @endforeach
 
+                </div>
             </div>
 
         </section>
@@ -127,7 +142,26 @@
                     <h2 class="h2-sub">
                         <span class="fil">P</span>latillos
                     </h2>
-                    <h1 class="head">Lorem</h1>
+                    <div class="contenedor_Tarjetas">
+                        <div class="card-Platillo" style="--i:url('/img/sopa.jpg')">
+                            <div class="content-Platillo">
+                                <h2>Sopa</h2>
+                                <a href="#">Ver detalles</a>
+                            </div>
+                        </div>
+                        <div class="card-Platillo" style="--i:url(/img/segundo.jpg)">
+                            <div class="content-Platillo">
+                                <h2>Plato Fuerte</h2>
+                                <a href="#">Ver detalles</a>
+                            </div>
+                        </div>
+                        <div class="card-Platillo" style="--i:url(/img/ensalada.jpg)">
+                            <div class="content-Platillo">
+                                <h2>Ensalada</h2>
+                                <a href="#">Ver detalles</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -138,95 +172,76 @@
             <div class="container">
                 <div class="res-info">
                     <div class="res-des">
-                        <a class="btn btn-primary" type="submit">Button</a>
-                        <div class="global">
-                            <h2 class="h2-sub">
-                                <span class="fil">D</span>escubre
-                            </h2>
-                            <h1 class="head hea-dark">Menu</h1>
-                            <div class="circle">
-                                <i class="fas fa-circle"></i>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Doloremque veniam autem qui magnam ex tempora atque, voluptas
-                            voluptatem, recusandae porro corporis assumenda.
-                            Aliquam accusamus blanditiis illo, vero quia tempora praesentium.
-                        </p>
-                        <a href="#" class="btn cta-btn">Pide el menu</a>
+                        @foreach ($posts as $post )
+                            @if ($post->pagina == 'inicio')
+                                <div class="global">
+                                    <h2 class="h2-sub">
+                                        @if ($post->categoria == 'platillos-texto')
+                                        <a class="btn btn-primary mt-3" href=" {{ route('admin.post.editar-post',$post->id) }} "  type="submit">Button</a>
+                                            {{$post->titulo2}}
+                                        @endif
+                                    </h2>
+                                    <h1 class="head hea-dark">
+                                        @if ($post->categoria == 'platillos-texto')
+                                            {{$post->titulo}}
+                                        @endif
+                                    </h1>
+                                    <div class="circle">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                </div>
+                                <p>
+                                    @if ($post->categoria == 'platillos-texto')
+                                        {{$post->contenido}}
+                                    @endif
+                                </p>
+                            @endif
+                        @endforeach
                     </div>
                     <a class="btn btn-primary" type="submit">Button</a>
-                    <div class="image-group pad-rig">
-                        <img src="img/descarga (1).jpeg" alt="">
-                        <img src="img/descarga.jpeg" alt="">
-                        <img src="img/images.jpeg" alt="">
-                        <img src="img/descarga (1).jpeg" alt="">
+                    <div class="container">
+                        <div class="containerPlatillos">
+                            @foreach ($posts as $post )
+                                @if ($post->pagina == 'inicio')
+                                    @if ($post->categoria == 'carrucel-1')
+                                        <div class="image" style="background-image: url({{ asset($post->url) }}) ;  "></div>
+                                    @endif
+                                    @if ($post->categoria == 'carrucel-imagen')
+                                        <div class="image" style="background-image: url({{ asset($post->url) }}) ; "></div>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
 
-                </div>
-            </div>
-        </section>
-
-        <section class="pb bt ">
-            <div class="container">
-                <div class="global">
-                    <h2 class="h2-sub">
-                        <span class="fil">P</span>latillos
-                    </h2>
-                    <h1 class="head">Lorem</h1>
                 </div>
             </div>
         </section>
 
         <section >
-            <!--
-            <div class="container border border-dark">
-                <div class="res-info">
-                    <a class="btn btn-primary" type="submit">Button</a>
-                    <div class="image-group">
-                        <img src="img/descarga (1).jpeg" alt="">
-                        <img src="img/descarga.jpeg" alt="">
-                    </div>
-                    <div class="res-des pad-rig">
-                        <a class="btn btn-primary" type="submit">Button</a>
-                        <div class="global">
-                            <h2 class="h2-sub">
-                                <span class="fil">D</span>egusta
-                            </h2>
-                            <h1 class="head hea-dark">Delisioso menu</h1>
-                            <div class="circle">
-                                <i class="fas fa-circle"></i>
-                            </div>
-                        </div>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Doloremque veniam autem qui magnam ex tempora atque, voluptas
-                             voluptatem, recusandae porro corporis assumenda.
-                            Aliquam accusamus blanditiis illo, vero quia tempora praesentium.
-                        </p>
-                        <a href="#" class="btn cta-btn">Has una reservacion</a>
-                    </div>
+            <div class="wrapper">
+                <div class="slider-testimonial">
+                @foreach ( $posts as $post )
+                        @if ($post->pagina == 'inicio' )
+                            @if ($post->categoria == 'comentarios' )
 
+                                <div class="testimonial-item">
+
+                                    <div class="testimonial-client">
+                                        <img src="client.png" alt="">
+                                        <p class="client-name">{{ $post->titulo }} {{ $post->titulo2 }}</p>
+                                    </div>
+                                    <div class="testimonial-text">
+                                        <p class="mb-3">{{ $post->contenido }}</p>
+                                        <a href="{{ route('admin.post.editarC-post',$post->id) }}" class="btn btn-primary  position-absolute top-50 start-50 translate-middle-x">EDITAR</a>
+                                    </div>
+                                </div>
+
+                            @endif
+                        @endif
+                    @endforeach
                 </div>
             </div>
-             -->
-             <div class="card-group">
-
-                @foreach ( $posts as $post )
-                    @if ($post->pagina == 'inicio' )
-                        @if ($post->categoria == 'comentarios' )
-                            <div class="card text-bg-light mb-3" style="max-width: 40rem;">
-                                <div class="card-body">
-                                    <p class="card-text fs-1"> {{ $post->contenido }} </p>
-                                    <a href="#" class="card-link fs-3">Card link</a>
-                                    <a href="#" class="card-link fs-3">Another link</a>
-                                </div>
-                            </div>
-                        @endif
-                    @endif
-                @endforeach
-              </div>
 
         </section>
 

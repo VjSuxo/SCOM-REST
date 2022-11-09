@@ -172,13 +172,12 @@
                                 document.getElementById('titulo').style.display = 'block';
                                 document.getElementById('titulo2').style.display = 'block';
                                 document.getElementById('contenido').style.display = 'block';
-                                document.getElementById('titulo2').style.display = 'none';
                                 document.getElementById('imagen').style.display = 'none';
                             }
                             if(valor == "comentarios"){
                                 document.getElementById('comentario').style.display = 'block';
                                 document.getElementById('imagen').style.display = 'none';
-                                document.getElementById('titulo').style.display = 'none';
+                                document.getElementById('titulo').style.display = 'block';
                                 document.getElementById('titulo2').style.display = 'none';
                                 document.getElementById('contenido').style.display = 'none';
                             }
@@ -254,10 +253,11 @@
                             <select class="form-select form-select-lg mb-3" name="comentarioP" id="comentarioP"  aria-label=".form-select-lg example">
                                 <option value="0">selec</option>
                                 @foreach ( $posts as $post )
-                                    <option value="{{ $post->texto }}">{{ $post->id }}</option>
+                                    <option value="{{ $post->id }}">{{ $post->cliente_id }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        <!-- Visualizar En una alert  -->
                         <a type="button"  class="btn btn-primary"  onclick="vercom()" >Visualisar</a>
                         <script>
                             function vercom(){
