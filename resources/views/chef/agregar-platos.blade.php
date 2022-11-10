@@ -11,10 +11,10 @@
 
         <ul class="nav nav-tabs justify-content-center">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ route('home.chef') }}" >Inicio</a>
+              <a class="nav-link aria-current="page" href="{{ route('home.chef') }}" >Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('chef.agregar-platos') }}" >Agregrar Platos</a>
+                <a class="nav-link active"" aria-current="page" href="{{ route('chef.agregar-platos') }}" >Agregrar Platos</a>
               </li>
             <li class="nav-item">
               <a class="nav-link " href="{{ route('chef.showPlatos') }}" >Platos</a>
@@ -81,6 +81,17 @@
                         }
                     }
                 </script>
+
+                <div style="display:none" id="chef">
+                    <div class="formulario__grupo" id="grupo__Titulo">
+                        <label for="usuario" class="formulario__label">Nombre</label>
+                        <div class="formulario__grupo-input">
+                        <input type="text" class="formulario__input" name="idChef" id="idChef" value=" {{ Auth::user()->id }}" >
+
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Grupo: Nombre -->
                 <div style="display:none" id="titulo">

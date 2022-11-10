@@ -14,6 +14,7 @@ use App\Models\Platillo;
 use App\Models\Bebida;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -24,7 +25,7 @@ class ProductoController extends Controller
     }
     public function showPlatos()
     {
-        $productos = new Producto;
+        $productos =  Producto::get();
         return view('chef.showPlatos',['productos'=>$productos]);
     }
 
@@ -32,6 +33,11 @@ class ProductoController extends Controller
     {
         $cats = Categoria::get();
         return view('chef.agregar-platos',['cats'=>$cats]);
+    }
+
+    public function editarProducto(Producto $producto)
+    {
+        return view('chef.editarProducto',['producto'=>$producto]);
     }
 
     public function storeProducto(Request $request){
@@ -49,6 +55,7 @@ class ProductoController extends Controller
                         $producto->stock = 0;
                         $producto->estado = "false";
                         $producto->costo = $request->costo;
+                        $producto->chef_id = $request->idChef;
                         if($request->categoria == 'sopa'){
                             $producto->categoria_id = 1;
                         }
@@ -109,10 +116,6 @@ class ProductoController extends Controller
 
     }
 
-    public function editarPost(Post $post)
-    {
-        return view('admin.post.editar-post',['post'=> $post]);
-    }
 
     public function editarPostC()
     {
@@ -120,13 +123,31 @@ class ProductoController extends Controller
         return view('admin.post.editarC-post',['posts'=> $posts]);
     }
 
-    public function update(Request $request,Post $post)
+    public function update(Request $request,Producto $producto)
     {
-        $post->titulo = $request->input('titulo');
-        $post->titulo2 = $request->input('titulo2');
-        $post->contenido = $request->input('contenido');
-        $post->save();
-        return view('admin.post.blanco');
+        $producto->nombre = $request->input('nombre');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->costo = $request->input('costo');
+        $producto->estado = $request->input('estado');
+        $producto->stock = $request->input('stock');
+        $producto->imgproducto =  $request->input('img');
+        $producto->save();
+        Alert::success('Guardado', $producto->id);
+        return back();
+    }
+
+    public function destroy(Producto $producto){
+        $platillo = Platillo::find($producto->id);
+        if($platillo != ''){
+            $platillo->delete();
+        }
+        $bebida = Bebida::find($producto->id);
+        if($bebida != ''){
+            $bebida->delete();
+        }
+
+        $producto->delete();
+        return to_route('chef.showPlatos');
     }
 
 }

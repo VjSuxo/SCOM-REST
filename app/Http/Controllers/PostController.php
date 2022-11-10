@@ -197,11 +197,6 @@ class PostController extends Controller
         return view('admin.post.editar-post',['post'=> $post]);
     }
 
-    public function editarPostC()
-    {
-        $posts = Comentario::get();
-        return view('admin.post.editarC-post',['posts'=> $posts]);
-    }
 
     public function update(Request $request,Post $post)
     {
@@ -213,3 +208,4 @@ class PostController extends Controller
     }
 
 }
+

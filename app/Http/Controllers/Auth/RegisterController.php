@@ -96,6 +96,7 @@ class RegisterController extends Controller
         if($data['rol'] == 3){
             Cajero::create([
                 'id' => $data['ci'],
+                'fecha_ingreso' => '2022-10-30',
             ]);
         }
         if($data['rol'] == 4){

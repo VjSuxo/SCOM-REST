@@ -26,7 +26,7 @@
                 <a class="btn btn-primary" href="" type="submit">Editar</a>
                 <div class="res-info ">
 
-                    <div class="carrucel_imagen border border-dark ">
+                    <div class="carrucel_imagen border border-dark  " >
                           <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                             <div class="carousel-indicators">
                               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -67,7 +67,7 @@
 
                     </div>
 
-                    <div class="res-des pad-rig border border-dark mt-3">
+                    <div class="res-des pad-rig border border-dark bg-warning mt-3">
 
                         @foreach ($posts as $post )
                             @if ($post->pagina == 'inicio')

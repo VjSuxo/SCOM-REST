@@ -52,10 +52,13 @@ class LoginController extends Controller
                 return redirect()->route('home.admin');
             }
             else  if(auth()->user()->rol == 1){
-                return redirect()->route('home.editor');
+                return redirect()->route('home.camarero');
             }
             else  if(auth()->user()->rol == 4){
                 return redirect()->route('home.chef');
+            }
+            else  if(auth()->user()->rol == 3){
+                return redirect()->route('home.cajero');
             }
             else if(auth()->user()->rol == 0){
                 return redirect()->route('home');

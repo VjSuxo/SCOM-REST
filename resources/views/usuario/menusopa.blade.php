@@ -1,24 +1,31 @@
 <x-layouts.app >
+    @vite(['resources/css/estilo_tarjetasFlip.css',])
 
+<div class="showcase2">
 
-    <div>
-        <h1 class="text-center">Sopa</h1>
-    </div>
+  <div class="container">
+    <div class="caracteristicasCard">
+        <div class="card-group ">
+            @foreach ($sopas as $post )
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach ($posts as $post)
-            @if ( $post->categoria == '123')
-                <div class="col">
-                    <div class="card h-100">
-                        <img class="w-50 rounded mx-auto d-block float-start" src="{{ asset($post->url) }}" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $post->titulo }}</h5>
-                            <p class="card-text">{{ $post->contenido }}</p>
+                        <div class="cardCar">
+                            <div class="face front">
+                                <img src="{{ asset($post->imgproducto) }}" alt="">
+                                <h3>{{ $post->nombre }}</h3>
+                            </div>
+                            <div class="face back">
+                                <h3>{{ $post->descripcion }}</h3>
+                                <p>{{ $post->nombre }}</p>
+
+                            </div>
                         </div>
-                    </div>
-                </div>
-            @endif
-        @endforeach
+
+            @endforeach
+
+        </div>
     </div>
+  </div>
+
+</div>
 
 </x-layouts>

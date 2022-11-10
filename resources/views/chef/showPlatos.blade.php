@@ -4,13 +4,13 @@
 
             <ul class="nav nav-tabs justify-content-center">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{ route('home.chef') }}" >Inicio</a>
+                  <a class="nav-link " aria-current="page" href="{{ route('home.chef') }}" >Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{{ route('chef.agregar-platos') }}" >Agregrar Platos</a>
                   </li>
                 <li class="nav-item">
-                  <a class="nav-link " href="{{ route('chef.showPlatos') }}" >Platos</a>
+                  <a class="nav-link active" href="{{ route('chef.showPlatos') }}" >Platos</a>
                 </li>
             </ul>
         </nav>
@@ -24,8 +24,10 @@
                         <th scope="col">Descripcion</th>
                         <th scope="col">Costo</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Estado</th>
                         <th scope="col" style="width:25vh">Imagen</th>
                         <th scope="col">Categoria</th>
+                        <th scope="col">Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,33 +37,33 @@
                             <td>{{ $producto->nombre }}</td>
                             <td>{{ $producto->descripcion }}</td>
                             <td>{{ $producto->costo}}</td>
-                            <td>{{ $producto->estado}}</td>
-                            <td>{{ $producto->stock }}</td>
+                            <td>{{ $producto->stock}}</td>
+                            <td>{{ $producto->estado }}</td>
                             <td style="width:25vh">
                                 <img class="w-50 rounded mx-auto d-block float-start" src="{{ asset($producto->imgproducto) }}" alt="">
                             </td>
                             <td>
-                                @if ( $producto->categoria == 1)
+                                @if ( $producto->categoria_id == '1')
                                     Sopa
                                 @endif
-                                @if ( $producto->categoria == 2)
+                                @if ( $producto->categoria_id == '2')
                                     Plato Fuerte
                                 @endif
-                                @if ( $producto->categoria == 3)
+                                @if ( $producto->categoria_id == '3')
                                     Ensalada
                                 @endif
-                                @if ( $producto->categoria == 4)
+                                @if ( $producto->categoria_id == '4')
                                     Bebida S/A
                                 @endif
-                                @if ( $producto->categoria == 5)
+                                @if ( $producto->categoria_id == '5')
                                     Bebida C/A
                                 @endif
                             </td>
                             <td>
-                                <a  href="#"  class="btn btn-primary"  >
+                                <a  href=" {{ route('chef.editarProducto', $producto->id) }} "  class="btn btn-primary">
                                 Editar
                                 </a>
-                                <form action="#" method="POST">
+                                <form action="{{ route('producto.destroy',$producto->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Delete</button>

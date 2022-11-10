@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChefController;
+use App\Http\Controllers\CamareroController;
+use App\Http\Controllers\CajeroController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
@@ -25,6 +27,9 @@ Route::get('/',[PostController::class,'showWelcome'])->name('welcome');
 Route::get('/login',[SessionsController::class,'create'])->name('login.index');
 Route::get('/register',[RegisterController::class,'create'])->name('register');
 
+Route::view("/usuario/nosotros",'usuario.nosotros')->name('usuario.nosotros');
+Route::view("/usuario/preguntasFrecuentes",'usuario.preguntasFrecuentes')->name('usuario.preguntas');
+Route::view("/usuario/contacto",'usuario.contacto')->name('usuario.contacto');
 Route::controller(MenuController::class)->prefix('/usuario')->group(function(){
     Route::view("/menu",'usuario.menu')->name('usuario.menu');
     Route::get("/menusopa",'showSopa')->name('usuario.menusopa');
@@ -36,9 +41,14 @@ Route::middleware(['auth', 'user-role:user'])->group(function () {
     Route::get("/home",[HomeController::class,'userHome'])->name('home');
 });
 
-//chef role
-Route::middleware(['auth', 'user-role:editor'])->group(function () {
-    Route::get("/editor/home",[HomeController::class,'editorHome'])->name('home.editor');
+//role cajero
+Route::middleware(['auth', 'user-role:cajero'])->group(function () {
+    Route::get("/cajero/home",[CajeroController::class,'cajeroHome'])->name('home.cajero');
+});
+
+//role camarero
+Route::middleware(['auth', 'user-role:camarero'])->group(function () {
+    Route::get("/camarero/home",[CamareroController::class,'camareroHome'])->name('home.camarero');
 });
 
 //chef role
@@ -48,8 +58,10 @@ Route::middleware(['auth', 'user-role:chef'])->group(function () {
     Route::controller(ProductoController::class)->prefix('/chef')->group(function(){
         Route::get("/agregar-platos",'agregarProducto')->name('chef.agregar-platos');
         Route::get("/showPlatos",'showPlatos')->name('chef.showPlatos');
+        Route::get("/{producto}/editarProducto",'editarProducto')->name('chef.editarProducto');
         Route::post('/','storeProducto')->name('chef.storeProducto');
-
+        Route::patch('/{producto}','update')->name('chef.update');
+        Route::delete('/{producto}','destroy')->name('producto.destroy');
     });
 
 });

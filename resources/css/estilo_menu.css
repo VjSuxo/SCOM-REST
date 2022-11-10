@@ -16,12 +16,13 @@
 .showcase2{
 
 	background-image: url(https://www.cornerhouserestaurants.co.uk/templates/yootheme/cache/homepage-07-b0e63288.jpeg);
+    background-color: rgba(0, 0, 255, 0.8);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
-
 }
+
 
 .card h5{
 	font-size: 2.6rem;

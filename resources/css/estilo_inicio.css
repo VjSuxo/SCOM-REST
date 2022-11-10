@@ -40,6 +40,11 @@ a {
 
 p {
     font-size: 1.6rem;
+    color: aliceblue;
+}
+
+h1{
+    color: aliceblue;
 }
 
 .container {
