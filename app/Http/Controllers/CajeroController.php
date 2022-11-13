@@ -28,7 +28,7 @@ class CajeroController extends Controller
     //}
 
     public function cajeroHome(){
-        return view('/admin/index',["msg"=>"Soy cajero"]);
+        return view('/cajero/index',["msg"=>"Soy cajero"]);
     }
 
 }

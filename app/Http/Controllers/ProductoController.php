@@ -59,7 +59,7 @@ class ProductoController extends Controller
                         if($request->categoria == 'sopa'){
                             $producto->categoria_id = 1;
                         }
-                        else if($request->categoria == 'platofuerte'){
+                        else if($request->categoria == 'segundo'){
                             $producto->categoria_id = 2;
                         }
                         else if($request->categoria == 'ensalada'){

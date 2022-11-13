@@ -20,29 +20,7 @@
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href=" {{ route('usuario.menu')}} ">Menu</a>
               </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Nuestros Platos
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Sopas</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Plato Fuerte/Segundo</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Ensalada</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Bebidas
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Con Alcohol</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sin Alcohol</a></li>
 
-              </ul>
-            </li>
 
             <li class="nav-item">
               <a class="nav-link" href="{{ route('usuario.nosotros') }}">Nosotros</a>

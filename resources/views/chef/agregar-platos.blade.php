@@ -51,7 +51,7 @@
                             document.getElementById('grado').style.display = 'none';
                             document.getElementById('imagen').style.display = 'block';
                         }
-                        else if(valor == "plato fuerte"){
+                        else if(valor == "segundo"){
                             document.getElementById('titulo').style.display = 'block';
                             document.getElementById('descripcion').style.display = 'block';
                             document.getElementById('costo').style.display = 'block';

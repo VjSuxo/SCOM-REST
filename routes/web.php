@@ -35,6 +35,7 @@ Route::controller(MenuController::class)->prefix('/usuario')->group(function(){
     Route::get("/menusopa",'showSopa')->name('usuario.menusopa');
 });
 
+
 Auth::routes();
 //user role
 Route::middleware(['auth', 'user-role:user'])->group(function () {
@@ -49,6 +50,22 @@ Route::middleware(['auth', 'user-role:cajero'])->group(function () {
 //role camarero
 Route::middleware(['auth', 'user-role:camarero'])->group(function () {
     Route::get("/camarero/home",[CamareroController::class,'camareroHome'])->name('home.camarero');
+    Route::controller(CamareroController::class)->prefix('/camarero')->group(function(){
+        Route::get("/agregarPedido",'agregarPedido')->name('camarero.agregarPedido');
+        Route::get("/controlPedido",'controlPedido')->name('camarero.controlPedido');
+        Route::get("/controlMesa",'controlMesa')->name('camarero.controlMesa');
+        Route::get("/agregarMesa",'agregarMesa')->name('camarero.agregarMesa');
+
+        Route::post("/",'agregar')->name('camarero.agregar');
+
+        Route::get("/menu",'menu')->name('camarero.menu');
+        Route::get("/pedidoSopa",'showSopa')->name('camarero.pedidoSopa');
+        Route::get("/pedidoSegundo",'showSegundo')->name('camarero.pedidoSegundo');
+        Route::get("/pedidoEnsalada",'showEnsalada')->name('camarero.pedidoEnsalada');
+        Route::get("/pedidoBebidaS",'showBebidaS')->name('camarero.pedidoBebidaS');
+        Route::get("/pedidoBebidaC",'showBebidaC')->name('camarero.pedidoBebidaC');
+
+    });
 });
 
 //chef role

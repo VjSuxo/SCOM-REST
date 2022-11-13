@@ -7,10 +7,10 @@
               <a class="nav-link active" aria-current="page" href="{{ route('home.chef') }}" >Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('chef.agregar-platos') }}" >Agregrar Platos</a>
+                <a class="nav-link" aria-current="page" href="{{ route('chef.agregar-platos') }}" >Registrar Usuario</a>
               </li>
             <li class="nav-item">
-              <a class="nav-link " href="{{ route('chef.showPlatos') }}" >Platos</a>
+              <a class="nav-link " href="{{ route('chef.showPlatos') }}" >Facturacion</a>
             </li>
         </ul>
     </nav>

@@ -28,6 +28,62 @@
             return view('usuario.menusopa',['sopas'=>$sopas]);
         }
 
+        public function showSegundo()
+        {
+            $segundos;
+            $i=0;
+            $productos = Producto::get();
+            foreach ($productos as $producto){
+                if($producto->categoria_id == 2){
+                    $segundos[$i] = $producto;
+                    $i++;
+                }
+            }
+            return view('usuario.menusegundo',['segundos'=>$segundos]);
+        }
+
+        public function showEnsalada()
+        {
+            $ensaladas;
+            $i=0;
+            $productos = Producto::get();
+            foreach ($productos as $producto){
+                if($producto->categoria_id == 3){
+                    $ensaladas[$i] = $producto;
+                    $i++;
+                }
+            }
+            return view('usuario.menuensalada',['ensaladas'=>$ensaladas]);
+        }
+
+        public function showBebidaC()
+        {
+            $bebidasC;
+            $i=0;
+            $productos = Producto::get();
+            foreach ($productos as $producto){
+                if($producto->categoria_id == 4){
+                    $bebidasC[$i] = $producto;
+                    $i++;
+                }
+        }
+            return view('usuario.menubebidaC',['bebidasS'=>$bebidasC]);
+        }
+
+        public function showBebidaS()
+        {
+            $bebidasS;
+            $i=0;
+            $productos = Producto::get();
+            foreach ($productos as $producto){
+                if($producto->categoria_id == 5){
+                    $bebidasS[$i] = $producto;
+                    $i++;
+                }
+            }
+            return view('usuario.menubebidaS',['bebidasS'=>$bebidasS]);
+        }
+
     }
 
 

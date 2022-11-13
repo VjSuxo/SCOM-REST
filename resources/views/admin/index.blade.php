@@ -15,9 +15,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="{{ route('admin.post.show-post') }}" >Posts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="#" >Crear Posts</a>
-                      </li>
+
                   </ul>
             </nav>
 

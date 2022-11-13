@@ -21,9 +21,7 @@
                 <li class="nav-item">
                   <a class="nav-link active" href="{{ route('admin.post.show-post') }}" >Posts</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.post.agregar-post') }}" >Crear Posts</a>
-                  </li>
+
               </ul>
         </nav>
     <div class="">
