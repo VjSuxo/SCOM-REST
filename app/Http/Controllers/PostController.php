@@ -29,6 +29,11 @@ class PostController extends Controller
         $post = Post::get();
         return view('admin.post.postInicio',['posts'=>$post]);
     }
+    public function postMenu()
+    {
+        $post = Post::get();
+        return view('admin.post.postMenu',['posts'=>$post]);
+    }
     public function agregarPost()
     {
         $post = Comentario::get();

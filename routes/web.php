@@ -10,6 +10,11 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MenuController;
+
+//movil
+use App\Http\Controllers\MovilController;
+
+
 use PHPUnit\TextUI\XmlConfiguration\Group;
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +38,12 @@ Route::view("/usuario/contacto",'usuario.contacto')->name('usuario.contacto');
 Route::controller(MenuController::class)->prefix('/usuario')->group(function(){
     Route::view("/menu",'usuario.menu')->name('usuario.menu');
     Route::get("/menusopa",'showSopa')->name('usuario.menusopa');
+    Route::get("/menuensalada",'showEnsalada')->name('usuario.menuensalada');
+    Route::get("/menusegundo",'showSegundo')->name('usuario.menusegundo');
+    Route::view("/menubebida",'usuario.bebidascs')->name('usuario.bebidascs');
+    Route::get("/menubebida/conalcohol",'showBebidaC')->name('usuario.menubebidac');
+    Route::get("/menubebida/sinalcohol",'showBebidaS')->name('usuario.menubebidas');
+
 });
 
 
@@ -58,6 +69,7 @@ Route::middleware(['auth', 'user-role:camarero'])->group(function () {
 
         Route::post("/",'agregar')->name('camarero.agregar');
 
+        Route::get("/seleccionmesa",'seleccionMesa')->name('camarero.seleccionmesa');
         Route::get("/menu",'menu')->name('camarero.menu');
         Route::get("/pedidoSopa",'showSopa')->name('camarero.pedidoSopa');
         Route::get("/pedidoSegundo",'showSegundo')->name('camarero.pedidoSegundo');
@@ -97,6 +109,7 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     Route::controller(PostController::class)->prefix('/admin/post')->group(function(){
         Route::get("/show-post",'showPost')->name('admin.post.show-post');
         Route::get("/postInicio",'postInicio')->name('admin.post.postInicio');
+        Route::get("/postMenu",'postMenu')->name('admin.post.postMenu');
         Route::get("/agregar-post",'agregarPost')->name('admin.post.agregar-post');
         Route::get('/{post}/editar-post','editarPost')->name('admin.post.editar-post');
         Route::get('/editarC-post','editarPostC')->name('admin.post.editarC-post');
@@ -106,3 +119,14 @@ Route::middleware(['auth', 'user-role:admin'])->group(function () {
     });
 
 });
+
+
+
+
+// Rutas movil
+Route::controller(MovilController::class)->prefix('/movil')->group(function(){
+    Route::get("/usuario",'index')->name('movil.index');
+
+});
+
+

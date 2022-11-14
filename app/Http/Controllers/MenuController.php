@@ -2,6 +2,7 @@
     namespace App\Http\Controllers;
 
     use App\Models\Producto;
+    use App\Models\Bebida;
     use App\Models\Usuario;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
@@ -61,13 +62,15 @@
             $bebidasC;
             $i=0;
             $productos = Producto::get();
+
             foreach ($productos as $producto){
-                if($producto->categoria_id == 4){
+
+                if($producto->categoria_id == 5){
                     $bebidasC[$i] = $producto;
                     $i++;
                 }
-        }
-            return view('usuario.menubebidaC',['bebidasS'=>$bebidasC]);
+            }
+            return view('usuario.menubebidaC',['bebidasC'=>$bebidasC]);
         }
 
         public function showBebidaS()
@@ -76,7 +79,7 @@
             $i=0;
             $productos = Producto::get();
             foreach ($productos as $producto){
-                if($producto->categoria_id == 5){
+                if($producto->categoria_id == 4){
                     $bebidasS[$i] = $producto;
                     $i++;
                 }

@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/css/estilo_inicio.css',
                 'resources/css/estilo_registroAdm.css',
                 'resources/css/estilo_nosotros.css',
+                'resources/css/estilo_yo.css',
                 'resources/css/estilo_preguntas.css',
                 'resources/css/estilo_login.css',
                 'resources/css/estilo_comentario.css',

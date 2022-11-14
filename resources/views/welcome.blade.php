@@ -3,6 +3,7 @@
     @vite(['resources/css/estilo_inicio.css','resources/css/estilo_comentario.css','resources/sss/sss.css','resources/css/estilo_tarjetaPlatillos.css','resources/css/estilo_imgDiagonal.css','resources/css/estilo_tarjetasFlip.css','resources/sss/sss.js',])
 
 <div class="showcase2">
+    <a href=" {{ route('movil.index') }} "> <h1> movil</h1> </a>
     <section class="dis-sto">
         <script>
             jQuery(function($){

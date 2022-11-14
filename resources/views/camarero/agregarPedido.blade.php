@@ -17,16 +17,16 @@
               </li>
             <li class="nav-item">
                 <a class="nav-link " href="{{ route('camarero.agregarMesa') }}" >Agregar Mesas</a>
-            </li>  
+            </li>
         </ul>
     </nav>
 
         <div class="container">
 
-          <iframe src="{{ route('camarero.menu') }}" class="mt-3 "  name="frame" width="100%" height="500" frameborder="0">
-            
+          <iframe src="{{ route('camarero.seleccionmesa') }}" class="mt-3 "  name="frame" width="100%" height="500" frameborder="0">
+
           </iframe>
-          
+
         </div>
 
 

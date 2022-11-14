@@ -81,7 +81,7 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group text-center pt-3">
-                                <h1 class="text-light">INICIAR SESIÓN</h1>
+                                <h1 class="text-light">INICIAR SESIÓN movil</h1>
                             </div>
                             <div class="form-group mx-sm-4 pt-3">
                                 <input id="user" type="text" class="form-control @error('email') is-invalid @enderror" name="user" value="{{ old('user') }}" placeholder="Ingrese su Usuario" required autocomplete="user" >
@@ -92,6 +92,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mx-sm-4 pb-3">
+                                <input id="user" type="text" class="form-control" name="tipo" value="movil" style=" display: block "  >
                                 <input  id="password" type="password" class="form-control  @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Ingrese su Contraseña">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -109,7 +110,7 @@
                                     </a>
                                 @endif
                             </div>
-                            <input id="user" type="text" class="form-control" name="tipo" value="web"  style=" display: none " >
+
 
                         </form>
                     </div>

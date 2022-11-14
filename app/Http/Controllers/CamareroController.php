@@ -63,19 +63,24 @@ class CamareroController extends Controller
 
 
 
-
+    public function seleccionMesa()
+    {
+        $mesas = Mesa::get();
+        $i=0;
+        $vmesas = [];
+            foreach ($mesas as $mesa){
+                if($mesa->camarero_id == Auth::user()->id){
+                    $vmesas[$i] = $mesa;
+                    $i++;
+                }
+            }
+        return view('camarero.seleccionmesa',['mesas'=>$vmesas]);
+    }
     public function menu(Mesa $mesa)
     {
-        return view('/camarero/menu');
+      return   $mesa ; //= $mesa;
+        return view('camarero.menu',['mesas'=>$mesas]);
     }
-
-
-
-
-
-
-
-
 
     public function showSopa()
     {
@@ -91,15 +96,9 @@ class CamareroController extends Controller
                 }
             }
 
-            $i=0;
-            foreach ($mesas as $mesa){
-                if($mesa->camarero_id == Auth::user()->id){
-                    $vmesas[$i] = $mesa;
-                    $i++;
-                }
-            }
 
-            return view('camarero.pedidoSopa',['sopas'=>$sopas],['mesas'=>$vmesas]);
+
+            return view('camarero.pedidoSopa',['sopas'=>$sopas]);
     }
 
         public function showSegundo()
@@ -164,18 +163,16 @@ class CamareroController extends Controller
             $producto = Producto::find($request->idProd);
 
             if($producto->stock >= $request->cant){
-                $comanda = Comanda::where("mesa_id","=",$request->nromesa)->paginate(10);
+                $comanda = Comanda::where('mesa_id', $request->nromesa)->first();
                 //return $comanda;
                 if($comanda != null){
                     //return $comanda;
-                    $comanda_producto = Comanda_Producto::where("comanda_id","=",$comanda->id);
-                    if($comanda_producto != null){
-                        return $comanda_producto;
-                    }
-                    else{
-                        $comanda_producto = new Comanda_Producto;
 
-                    }
+                    $comanda_producto = new Comanda_Producto;
+                    $comanda_producto->comanda_id = $comanda->id;
+                    $comanda_producto->cant_pedido = $request -> cant;
+                    $comanda_producto->save();
+                    return $comanda_producto;
                 }
                 else{
                     $comanda = new Comanda;
@@ -184,7 +181,11 @@ class CamareroController extends Controller
                     $comanda->hora = $now->toTimeString();
                     $comanda->mesa_id = $request->nromesa;
                     $comanda->save();
-                    $a =  agregarProductos($comanda,$producto);
+
+                    $comanda_producto = new Comanda_Producto;
+                    $comanda_producto->comanda_id = $comanda->id;
+                    $comanda_producto->cant_pedido = $request -> cant;
+                    $comanda_producto->save();
                 }
 
             }

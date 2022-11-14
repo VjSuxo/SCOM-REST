@@ -25,19 +25,14 @@
     </nav>
         <div class="container">
 
-            @foreach ($sopas as $post )
+
 
             <form action=" {{ route('camarero.agregar') }} " method="POST">
                 @csrf
-            <select class="form-select" name="nromesa" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                @foreach ( $mesas as  $mesa)
-                    <option value="{{ $mesa->id }}"> {{ $mesa->id }}</option>
-                @endforeach
-            </select>
+
                 <div class="caracteristicasCard">
                     <div class="card-group ">
-
+                        @foreach ($sopas as $post )
                                     <div class="cardCar">
                                         <div class="face front">
                                             <img src="{{ asset($post->imgproducto) }}" alt="">
@@ -53,12 +48,12 @@
                                             <button type="submit" class="btn btn-primary">Agregar</button>
                                         </div>
                                     </div>
-
+                                    @endforeach
                     </div>
                 </div>
 
             </form>
-            @endforeach
+
         </div>
 
         @include('sweetalert::alert')

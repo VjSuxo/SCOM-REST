@@ -30,7 +30,7 @@
                     </button>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="{{ route('admin.post.postInicio') }}" target="frame">Inicio</a></li>
-                      <li><a class="dropdown-item" href="#">Menu</a></li>
+                      <li><a class="dropdown-item" href=" {{route('admin.post.postMenu')}}"    target="frame">Menu</a></li>
                       <li><a class="dropdown-item" href="#">Preguntas Frecuentes</a></li>
                       <li><a class="dropdown-item" href="#">Contacto</a></li>
                     </ul>

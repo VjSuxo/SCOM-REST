@@ -41,31 +41,37 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
         $input = $request->all();
         $this->validate($request,[
             'user' => 'required',
             'password' => 'required',
         ]);
 
-        if(auth()->attempt(['user'=>$input["user"],'password'=>$input["password"]])){
-            if(auth()->user()->rol == 2){
-                return redirect()->route('home.admin');
+        if($request->tipo == 'web'){
+            if(auth()->attempt(['user'=>$input["user"],'password'=>$input["password"]])){
+                if(auth()->user()->rol == 2){
+                    return redirect()->route('home.admin');
+                }
+                else  if(auth()->user()->rol == 1){
+                    return redirect()->route('home.camarero');
+                }
+                else  if(auth()->user()->rol == 4){
+                    return redirect()->route('home.chef');
+                }
+                else  if(auth()->user()->rol == 3){
+                    return redirect()->route('home.cajero');
+                }
+                else if(auth()->user()->rol == 0){
+                    return redirect()->route('home');
+                }
             }
-            else  if(auth()->user()->rol == 1){
-                return redirect()->route('home.camarero');
-            }
-            else  if(auth()->user()->rol == 4){
-                return redirect()->route('home.chef');
-            }
-            else  if(auth()->user()->rol == 3){
-                return redirect()->route('home.cajero');
-            }
-            else if(auth()->user()->rol == 0){
-                return redirect()->route('home');
+            else{
+                return redirect()->route('login')->with("error",'incorrect');
             }
         }
-        else{
-            return redirect()->route('login')->with("error",'incorrect');
+        else if ($request->tipo == 'movil'){
+            return $request;
         }
 
     }

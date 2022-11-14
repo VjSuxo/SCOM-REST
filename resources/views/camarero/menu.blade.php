@@ -20,7 +20,7 @@
               </li>
             <li class="nav-item">
                 <a class="nav-link " href="{{ route('camarero.pedidoBebidaC') }}" >Bebida C/A</a>
-            </li>  
+            </li>
         </ul>
     </nav>
 
@@ -28,12 +28,13 @@
 
             <div class="caracteristicasCard">
                 <div class="card-group ">
-                    
+
                     <a href="{{ route('camarero.pedidoSopa') }}">Sopa</a>
-        
+                    <h1> {{$mesas->id}} </h1>
+
                 </div>
             </div>
-          
+
         </div>
 
         @include('sweetalert::alert')
